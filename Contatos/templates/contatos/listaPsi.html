@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+    {% include 'contatos/links.html' %}
+    <table class="table">
+        <tr>
+            <th>Nome</th>
+            <th>Idade </th>
+            <th>Consultório</th>
+            <th>Atende Online</th>
+            <th>Abordagem </th>
+            <th>Lattes </th>
+            <th> Ações </th>
+        </tr> 
+        {% for psicologo in psicologos %}
+        <tr>
+            <td>{{ psicologo.nome }}</td>
+            <td>{{ psicologo.idade}} </td>
+            <td>{{ psicologo.local }}</td>
+            <td>{{ psicologo.atendeOnline }}</td>
+            <td>{{ psicologo.abordagem }}</td>
+            <td>{{ psicologo.curriculum }} </td>
+            <td> 
+                <a href="{% url 'contatos:atualiza' pk=psicologo.id %}">Atualizar</a>
+            | <a href="{% url 'contatos:apaga' pk=psicologo.id %}"> Excluir </a> </td>
+            
+        </tr>
+        {% empty %}
+        <tr> <td colspan="7"> Sem cadastros ainda </td></tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

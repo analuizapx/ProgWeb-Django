@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <title>{% block titulo %}{% endblock %}</title>
+</head>
+<body>
+
+    <h1> Bem Viver </h1>
+    {% if user.is_authenticated %}
+        <a href="contatos/"> Entrar </a>
+    {% else %} 
+        <a href="{% url 'sec-login' %} "> Entrar </a>
+    {% endif %}
+    | <a href="{% url 'sec-home' %} ">  Página Inicial  </a>
+    | <a href="{% url 'sec-registro' %} "> Novo Usuário </a>
+        {% if user.is_authenticated %}
+            | <a href="{% url 'sec-logout' %} "> LogOut </a>
+        {% else %}
+            | <a href="{% url 'sec-login' %} "> Login </a>
+        {% endif %}
+    | Você é {% firstof user.username "visitante" %}
+    
+
+    <hr> 
+    {% block conteudo %}{% endblock %}
+    
+</body>
+</html>

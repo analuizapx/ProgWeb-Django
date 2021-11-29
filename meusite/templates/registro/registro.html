@@ -1,0 +1,20 @@
+{% extends 'registro/base.html' %}
+
+
+{% block titulo %} Registro de Usuário {% endblock %}
+
+{% block conteudo %}
+
+<h2> Registro de usuário </h2>
+<p>Entre com seus dados aqui</p>
+<form method="post" >
+    {% csrf_token %}
+    <table>
+        {{ formulario.as_table }}
+    </table>
+    <input type="submit" value="Confirmar Registro" />
+
+</form>
+
+{% endblock %}
+
